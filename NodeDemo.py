@@ -1,30 +1,33 @@
 class node:
-    def __init__(self,data,left=None,right=None,center=None):
+    def __init__(self,data,left=None,right=None,center=None,depth=0):
         self.data=data
         self.left=left
         self.right=right
         self.center=center
+        self.depth=depth
     
     def insert(self,data,pos): #Add a left, right, or center child.
         if pos=="L":
-            self.left=node(data)
+            self.left=node(data,depth=self.depth+1)
         elif pos=="R":
-            self.right=node(data)
+            self.right=node(data,depth=self.depth+1)
         elif pos=="C":
-            self.center=node(data)
+            self.center=node(data,depth=self.depth+1)
     
     def display(self): #Print own data, run the same code for left child, center child, and right child, if they have them
         print(self.data)
         if self.left:
             print("L: ",end="")
+            print(self.data,"-> ",end="")
             self.left.display()
         if self.center:
             print("C: ",end="")
+            print(self.data,"-> ",end="")
             self.center.display()
         if self.right:
             print("R: ",end="")
+            print(self.data,"-> ",end="")
             self.right.display()
-        print("-BT-") #Represents a backtrack
     
        
 
