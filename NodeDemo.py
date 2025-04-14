@@ -18,16 +18,21 @@ class node:
         print(self.data)
         if self.left:
             print("L: ",end="")
-            print(self.data,"-> ",end="")
-            self.left.display()
+            print(self.left.data)
         if self.center:
             print("C: ",end="")
-            print(self.data,"-> ",end="")
-            self.center.display()
+            print(self.center.data)
         if self.right:
             print("R: ",end="")
-            print(self.data,"-> ",end="")
+            print(self.right.data)
+        if self.left:
+            self.left.display()
+        if self.center:
+            self.center.display()
+        if self.right:
             self.right.display()
+        if not self.left and not self.right and not self.center:
+            print("[No children]")
     
        
 
