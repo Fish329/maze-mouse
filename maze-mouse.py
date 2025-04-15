@@ -15,6 +15,6 @@ print("""
  1 |   |                   |   |   | 
    +   +   +---+---+   +   +   +   +
  0 | @ |           |   |       |   | 
-   *---+---+---+---+---+---+---+---+
+   +---+---+---+---+---+---+---+---+
      0   1   2   3   4   5   6   7""")
 #this design is modeled after shahood's design. however it was made by hand by me.
