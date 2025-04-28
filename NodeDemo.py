@@ -1,38 +1,34 @@
 class node:
-    def __init__(self,data,left=None,right=None,center=None,depth=0):
+    def __init__(self,data,pos=None,left=None,right=None,center=None,depth=0):
         self.data=data
         self.left=left
         self.right=right
         self.center=center
         self.depth=depth
+        self.pos=pos
     
     def insert(self,data,pos): #Add a left, right, or center child.
         if pos=="L":
-            self.left=node(data,depth=self.depth+1)
+            self.left=node(data,pos,depth=self.depth+1)
         elif pos=="R":
-            self.right=node(data,depth=self.depth+1)
+            self.right=node(data,pos,depth=self.depth+1)
         elif pos=="C":
-            self.center=node(data,depth=self.depth+1)
+            self.center=node(data,pos,depth=self.depth+1)
     
     def display(self): #Print own data, run the same code for left child, center child, and right child, if they have them
-        print(self.data)
-        if self.left:
-            print("L: ",end="")
-            print(self.left.data)
-        if self.center:
-            print("C: ",end="")
-            print(self.center.data)
-        if self.right:
-            print("R: ",end="")
-            print(self.right.data)
+        if self.depth>0:
+            for i in range(self.depth-1):
+                print("│",end="")
+            print("├",end="")
+            print(self.data,"(",self.pos,")",sep="")
+        else:
+            print(self.data)
         if self.left:
             self.left.display()
         if self.center:
             self.center.display()
         if self.right:
             self.right.display()
-        if not self.left and not self.right and not self.center:
-            print("[No children]")
     
        
 
