@@ -82,12 +82,16 @@ root.trav(6,"L").right.left.left.right.trav(5,"L").insert(6,1,"L")#6,0 to 6,1
 root.trav(8,"L").right.trav(3,"L").right.left.left.insert(7,4,"L")#7,3 to 7,4
 root.trav(8,"L").right.trav(3,"L").right.left.right.insert(7,0,"L")#7,1 to 7,0
 root.trav(8,"L").right.trav(3,"L").right.right.left.insert(6,5,"L")#6,4 to 6,5
-root.trav(8,"L").right.trav(3,"L").right.left.left.insert(6,6,"L")#7,6 to 6,6#
+root.trav(8,"L").right.trav(3,"L").right.left.left.insert(6,6,"L")#7,6 to 6,6
 move=root.trav(5,"L").trav(3,"R").trav(3,"L").right
 root.trav(6,"L").right.left.left.right.trav(5,"L").left=move #6,1 to 6,2
-root.trav(8,"L").right.trav(3,"L").right.right.left.left.insert(5,5,"L")#6,5 to 5,5#
+root.trav(8,"L").right.trav(3,"L").right.right.left.left.insert(5,5,"L")#6,5 to 5,5
 root.trav(8,"L").right.trav(3,"L").right.right.left.left.insert(7,5,"R")#6,5 to 7,5
-#THIS IS WIP, the tree is not fully built yet
+move=root.trav(8,"L").right.trav(3,"L").right.right.left.left
+root.trav(8,"L").right.trav(3,"L").right.trav(3,"L").left=move #6,6 to 6,5
+root.trav(8,"L").right.trav(3,"L").right.right.trav(3,"L").insert(4,5,"L") #5,5 to 4,5
+root.trav(8,"L").right.trav(3,"L").right.right.trav(4,"L").insert(4,6,"L") #4,5 to 4,6
+root.trav(8,"L").right.trav(3,"L").right.right.trav(4,"L").insert(4,4,"L") #4,5 to 4,4 (END)
 
 #The maze, crushed down into one string
 mazepos="+---+---+---+---+---+---+---+---+|       |                       |+   +---+   +---+---+   +---+   +|   |           |   |   |       |+   +   +---+   +   +---+   +---+|       |   |   |               |+---+   +   +---+   +---+   +---+|       |   |       |   |   |   |+   +   +   +       +   +   +   +|   |       |       |   |   |   |+   +   +   +---+---+   +   +   +|   |   |                       |+   +   +---+---+---+---+   +   +|   |                   |   |   |+   +   +---+---+   +   +   +   +|   |           |   |       |   |+---+---+---+---+---+---+---+---+"
