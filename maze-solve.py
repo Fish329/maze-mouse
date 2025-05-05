@@ -1,21 +1,21 @@
 class node:
-    def __init__(self,x,y,pos=None,left=None,right=None,center=None,depth=0):
+    def __init__(self,x,y,left=None,right=None,center=None,depth=0,parent=None):
         self.x=x
         self.y=y
         self.left=left
         self.right=right
         self.center=center
         self.depth=depth
-        self.pos=pos
+        self.parent=parent
     
     def insert(self,x,y,pos): #Add a left, right, or center child.
         if pos=="L":
-            self.left=node(x,y,pos,depth=self.depth+1)
+            self.left=node(x,y,depth=self.depth+1,parent=self)
         elif pos=="R":
-            self.right=node(x,y,pos,depth=self.depth+1)
+            self.right=node(x,y,depth=self.depth+1,parent=self)
         elif pos=="C":
-            self.center=node(x,y,pos,depth=self.depth+1)
-            
+            self.center=node(x,y,depth=self.depth+1,parent=self)
+
     def trav(self,iterations,pos): #Traverse, to marginally shorten the commands
         recurse=self
         for i in range(iterations):
@@ -26,22 +26,6 @@ class node:
             elif pos=="R":
                 recurse=recurse.right
         return recurse
-    
-    def display(self): #Print own data, run the same code for left child, center child, and right child, if they have them
-        if self.depth>0:
-            for i in range(self.depth):
-                print("-",end="")
-            print("(",self.x,",",self.y,") ","(",self.pos,")",sep="")
-        else:
-            print("(",self.x,",",self.y,")",sep="")
-        if self.left:
-            self.left.display()
-        if self.center:
-            self.center.display()
-        if self.right:
-            self.right.display()
-    
-       
 
 root=node(0,0) #0,0
 root.insert(0,1,"L") #0,0 to 0,1
@@ -108,5 +92,36 @@ root.trav(8,"L").right.trav(3,"L").right.trav(3,"L").left=move #6,6 to 6,5
 root.trav(8,"L").right.trav(3,"L").right.right.trav(3,"L").insert(4,5,"L") #5,5 to 4,5
 root.trav(8,"L").right.trav(3,"L").right.right.trav(4,"L").insert(4,6,"L") #4,5 to 4,6
 root.trav(8,"L").right.trav(3,"L").right.right.trav(4,"L").insert(4,4,"L") #4,5 to 4,4 (END)
-myNode=root
-myNode.display()
+
+#The maze, crushed down into one string
+mazepos="+---+---+---+---+---+---+---+---+|       |                       |+   +---+   +---+---+   +---+   +|   |           |   |   |       |+   +   +---+   +   +---+   +---+|       |   |   |               |+---+   +   +---+   +---+   +---+|       |   |       |   |   |   |+   +   +   +       +   +   +   +|   |       |       |   |   |   |+   +   +   +---+---+   +   +   +|   |   |                       |+   +   +---+---+---+---+   +   +|   |                   |   |   |+   +   +---+---+   +   +   +   +|   |           |   |       |   |+---+---+---+---+---+---+---+---+"
+#maze width: 33 chars
+#height: 17
+curpos=497
+curNode=root
+prevNode=0
+# up 1 space: -66
+# down 1 space: +66
+# left 1 space: -4
+# right 1 space: +4
+def drawmaze(curpos,x,y):
+    itr=0 #counter
+    for i in range(x):
+        curpos=curpos-4
+    for i in range(y):
+        curpos=curpos-66
+    for i in range(17): #print 17 lines
+        for j in range(33): #print 33 chars per line
+            if curpos==itr: #if the mouse's position is equal to the current tile's position, replace it
+                print("@",end="")
+            else:
+                print (list(mazepos)[itr],end="") #otherwise print the tile
+            itr=itr+1
+        print("")
+    print("available moves:")
+    if curNode.left:
+        print("Left (",curNode.left.x,",",curNode.left.y,")",sep="")
+    if curNode.center:
+        print("Right (",curNode.center.x,",",curNode.center.y,")",sep="")
+        #WIP
+drawmaze(curpos,0,0)
