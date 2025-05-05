@@ -98,6 +98,8 @@ mazepos="+---+---+---+---+---+---+---+---+|       |                       |+   +
 #maze width: 33 chars
 #height: 17
 curpos=497
+curNode=root
+prevNode=0
 # up 1 space: -66
 # down 1 space: +66
 # left 1 space: -4
@@ -115,5 +117,11 @@ def drawmaze(curpos,x,y):
             else:
                 print (list(mazepos)[itr],end="") #otherwise print the tile
             itr=itr+1
-        print("",itr-1,end="") #print end tile's position for easier counting
         print("")
+    print("available moves:")
+    if curNode.left:
+        print("Left (",curNode.left.x,",",curNode.left.y,")",sep="")
+    if curNode.center:
+        print("Right (",curNode.center.x,",",curNode.center.y,")",sep="")
+        #WIP
+drawmaze(curpos,0,0)
