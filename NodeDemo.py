@@ -153,9 +153,12 @@ c57.insL(c56)
 c57.insC(c67)
 c53.insC(c54)
 c62.insC(c72)
-c62.insL(c63)#
-c51.insR(c50)#
-c67.insC(c77)#
+c62.insL(c63)
+c51.insR(c50)
+c67.insC(c77)
 c72.insL(c73)#
 c72.insR(c71)#
+c63.insC(c64)#
+c50.insL(c60)#
+c77.insL(c76)#
 #WIP
