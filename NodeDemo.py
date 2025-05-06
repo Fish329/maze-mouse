@@ -1,20 +1,25 @@
 class node:
-    def __init__(self,x,y,pos=None,left=None,right=None,center=None,depth=0):
+    def __init__(self,x,y,pos=None,le=None,ri=None,ce=None,depth=0):
         self.x=x
         self.y=y
-        self.left=left
-        self.right=right
-        self.center=center
+        self.le=le
+        self.ri=ri
+        self.ce=ce
         self.depth=depth
         self.pos=pos
     
-    def insert(self,x,y,pos): #Add a left, right, or center child.
-        if pos=="L":
-            self.left=node(x,y,pos,depth=self.depth+1)
-        elif pos=="R":
-            self.right=node(x,y,pos,depth=self.depth+1)
-        elif pos=="C":
-            self.center=node(x,y,pos,depth=self.depth+1)
+    def insL(self,wnode):
+            self.le=wnode
+            wnode.depth=self.depth+1
+            wnode.pos="L"
+    def insR(self,wnode):
+            self.ri=wnode
+            wnode.depth=self.depth+1
+            wnode.pos="R"
+    def insC(self,wnode):
+            self.ce=wnode
+            wnode.depth=self.depth+1
+            wnode.pos="C"
             
     def trav(self,iterations,pos): #Traverse, to marginally shorten the commands
         recurse=self
@@ -34,51 +39,119 @@ class node:
             print("(",self.x,",",self.y,") ","(",self.pos,")",sep="")
         else:
             print("(",self.x,",",self.y,")",sep="")
-        if self.left:
-            self.left.display()
-        if self.center:
-            self.center.display()
-        if self.right:
-            self.right.display()
-    
-       
+        if self.le:
+            self.le.display()
+        if self.ce:
+            self.ce.display()
+        if self.ri:
+            self.ri.display()
 
-root=node(0,0) #0,0
-root.insert(0,1,"C") #0,0 to 0,1
-root.center.insert(0,2,"C") #0,1 to 0,2
-root.trav(2,"C").insert(0,3,"C") #0,2 to 0,3
-root.trav(3,"C").insert(0,4,"C") #0,3 to 0,4
-root.trav(4,"C").insert(1,4,"R") #0,4 to 1,4
-root.trav(4,"C").right.insert(1,5,"L") #1,4 to 1,5
-root.trav(4,"C").right.insert(1,3,"R") #1,4 to 1,3
-root.trav(4,"C").right.left.insert(0,5,"L") #1,5 to 0,5
-root.trav(4,"C").right.left.insert(1,6,"C") #1,5 to 1,6
-root.trav(4,"C").right.right.insert(1,2,"C") #1,3 to 1,2
-root.trav(4,"C").right.right.insert(2,3,"L") #1,3 to 2,3
-root.trav(4,"C").right.left.left.insert(0,6,"R")#0,5 to 0,6
-root.trav(4,"C").right.left.center.insert(2,6,"L")#1,6 to 2,6
-root.trav(4,"C").right.right.center.insert(1,1,"C")#1,2 to 1,1
-root.trav(4,"C").right.right.left.insert(2,4,"L")#2,3 to 2,4
-root.trav(4,"C").right.right.left.insert(2,2,"R")#2,3 to 2,2
-root.trav(4,"C").right.left.left.right.insert(0,7,"C")#0,6 to 0,7
-root.trav(4,"C").right.left.center.left.insert(3,6,"C")#2,6 to 3,6
-root.trav(4,"C").right.right.trav(2,"C").insert(2,1,"L")#1,1 to 2,1
-root.trav(4,"C").right.right.trav(2,"C").insert(1,0,"C")#1,1 to 1,0
-root.trav(4,"C").right.right.left.left.insert(2,5,"C")#2,4 to 2,5
-root.trav(4,"C").right.right.left.right.insert(3,2,"L")#2,2 to 3,2
-root.trav(4,"C").right.left.left.right.center.insert(1,7,"R")#0,7 to 1,7
-root.trav(4,"C").right.left.center.left.center.insert(3,5,"R")#3,6 to 3,5
-root.trav(4,"C").right.right.trav(2,"C").left.insert(3,1,"C")#2,1 to 3,1
-root.trav(4,"C").right.right.left.right.left.insert(2,0,"L")#1,0 to 2,0
-root.trav(4,"C").right.right.left.right.left.insert(4,2,"C")#3,2 to 4,2
-root.trav(4,"C").right.right.trav(2,"C").left.center.insert(4,1,"C") #3,1 to 4,1
-root.trav(4,"C").right.right.left.right.left.left.insert(3,0,"C")#2,0 to 3,0
-root.trav(4,"C").right.right.left.right.left.center.insert(5,3,"C")#4,2 to 5,2
-root.trav(4,"C").right.right.trav(2,"C").left.trav(2,"C").insert(4,0,"R")#4,1 to 4,0
-root.trav(4,"C").right.right.trav(2,"C").left.trav(2,"C").insert(5,1,"C")#4,1 to 5,1#
-root.trav(4,"C").right.right.left.right.left.trav(2,"C").insert(5,3,"L")#5,2 to 5,3#
-root.trav(4,"C").right.right.left.right.left.trav(2,"C").insert(6,2,"C")#5,2 to 6,2#
-#WIP
-myNode=root
-myNode.display()
-print("The tree is unfinished. Sorry! I didn't have enough time to manually map out a whole maze, then destroy it and remake it in even LESS time! Who could've imagined?!")
+c00=node(0,0)
+c01=node(0,1)
+c02=node(0,2)
+c03=node(0,3)
+c04=node(0,4)
+c05=node(0,5)
+c06=node(0,6)
+c07=node(0,7)
+c10=node(1,0)
+c11=node(1,1)
+c12=node(1,2)
+c13=node(1,3)
+c14=node(1,4)
+c15=node(1,5)
+c16=node(1,6)
+c17=node(1,7)
+c20=node(2,0)
+c21=node(2,1)
+c22=node(2,2)
+c23=node(2,3)
+c24=node(2,4)
+c25=node(2,5)
+c26=node(2,6)
+c27=node(2,7)
+c30=node(3,0)
+c31=node(3,1)
+c32=node(3,2)
+c33=node(3,3)
+c34=node(3,4)
+c35=node(3,5)
+c36=node(3,6)
+c37=node(3,7)
+c40=node(4,0)
+c41=node(4,1)
+c42=node(4,2)
+c43=node(4,3)
+c44=node(4,4)
+c45=node(4,5)
+c46=node(4,6)
+c47=node(4,7)
+c50=node(5,0)
+c51=node(5,1)
+c52=node(5,2)
+c53=node(5,3)
+c54=node(5,4)
+c55=node(5,5)
+c56=node(5,6)
+c57=node(5,7)
+c60=node(6,0)
+c61=node(6,1)
+c62=node(6,2)
+c63=node(6,3)
+c64=node(6,4)
+c65=node(6,5)
+c66=node(6,6)
+c67=node(6,7)
+c70=node(7,0)
+c71=node(7,1)
+c72=node(7,2)
+c73=node(7,3)
+c74=node(7,4)
+c75=node(7,5)
+c76=node(7,6)
+c77=node(7,7)
+
+c00.insC(c01)
+c01.insC(c02)
+c02.insC(c03)
+c03.insC(c04)
+c04.insL(c14)
+c14.insL(c15)
+c14.insR(c13)
+c15.insL(c05)
+c15.insC(c16)
+c13.insL(c23)
+c13.insC(c12)
+c05.insC(c06)
+c16.insL(c26)
+c23.insL(c24)
+c23.insR(c22)
+c12.insC(c11)
+c06.insC(c07)
+c26.insL(c27)
+c26.insC(c36)
+c24.insC(c25)
+c22.insL(c32)
+c11.insC(c10)
+c11.insL(c21)
+c07.insL(c17)
+c27.insL(c37)
+c36.insR(c35)
+c32.insC(c42)
+c10.insL(c20)
+c21.insC(c31)
+c37.insC(c47)
+c42.insC(c52)#
+c20.insC(c30)#
+c31.insC(c41)#
+c47.insC(c57)#
+c52.insL(c53)#
+c52.insC(c62)#
+c41.insL(c40)#
+c41.insC(c51)#
+c57.insL(c56)#
+c57.insC(c67)#
+c53.insC(c54)#
+c62.insC(c72)#
+c62.insL(c63)#
+c51.insR(c50)#
