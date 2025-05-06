@@ -81,4 +81,4 @@ root.trav(4,"C").right.right.left.right.left.trav(2,"C").insert(6,2,"C")#5,2 to 
 #WIP
 myNode=root
 myNode.display()
-print("The tree is unfinished. Sorry! I didn't have enough time to manually map out a whole maze! Who could've imagined?!")
+print("The tree is unfinished. Sorry! I didn't have enough time to manually map out a whole maze, then destroy it and remake it in even LESS time! Who could've imagined?!")
