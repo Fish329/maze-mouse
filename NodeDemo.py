@@ -1,4 +1,3 @@
-
 class node:
     def __init__(self,x,y,pos=None,left=None,right=None,center=None,depth=0):
         self.x=x
@@ -71,10 +70,14 @@ root.trav(4,"C").right.left.left.right.center.insert(1,7,"R")#0,7 to 1,7
 root.trav(4,"C").right.left.center.left.center.insert(3,5,"R")#3,6 to 3,5
 root.trav(4,"C").right.right.trav(2,"C").left.insert(3,1,"C")#2,1 to 3,1
 root.trav(4,"C").right.right.left.right.left.insert(2,0,"L")#1,0 to 2,0
-root.trav(4,"C").right.right.left.right.left.insert(4,2,"C")#3,2 to 4,2#
-root.trav(4,"C").right.right.trav(2,"C").left.center.insert(4,1,"C") #3,1 to 4,1#
+root.trav(4,"C").right.right.left.right.left.insert(4,2,"C")#3,2 to 4,2
+root.trav(4,"C").right.right.trav(2,"C").left.center.insert(4,1,"C") #3,1 to 4,1
 root.trav(4,"C").right.right.left.right.left.left.insert(3,0,"C")#2,0 to 3,0
-root.trav(4,"C").right.right.left.right.left.center.inert(5,3,"C")#4,2 to 5,2
+root.trav(4,"C").right.right.left.right.left.center.insert(5,3,"C")#4,2 to 5,2
+root.trav(4,"C").right.right.trav(2,"C").left.trav(2,"C").insert(4,0,"R")#4,1 to 4,0
+root.trav(4,"C").right.right.trav(2,"C").left.trav(2,"C").insert(5,1,"C")#4,1 to 5,1#
+root.trav(4,"C").right.right.left.right.left.trav(2,"C").insert(5,3,"L")#5,2 to 5,3#
+root.trav(4,"C").right.right.left.right.left.trav(2,"C").insert(6,2,"C")#5,2 to 6,2#
 #WIP
 myNode=root
 myNode.display()
