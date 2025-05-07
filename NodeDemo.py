@@ -8,38 +8,27 @@ class node:
         self.depth=depth
         self.pos=pos
     
-    def insL(self,wnode):
+    def insL(self,wnode): #insert a node at the left position
             self.le=wnode
             wnode.depth=self.depth+1
             if wnode.pos!=None:
                 wnode.pos="X"
             else:
                 wnode.pos="L"
-    def insR(self,wnode):
+    def insR(self,wnode): #insert at the right position
             self.ri=wnode
             wnode.depth=self.depth+1
             if wnode.pos!=None:
                 wnode.pos="X"
             else:
                 wnode.pos="R"
-    def insC(self,wnode):
+    def insC(self,wnode): #insert at the center position
             self.ce=wnode
             wnode.depth=self.depth+1
             if wnode.pos!=None:
                 wnode.pos="X"
             else:
                 wnode.pos="C"
-            
-    def trav(self,iterations,pos): #Traverse, to marginally shorten the commands
-        recurse=self
-        for i in range(iterations):
-            if pos=="L":
-                recurse=recurse.left
-            elif pos=="C":
-                recurse=recurse.center
-            elif pos=="R":
-                recurse=recurse.right
-        return recurse
     
     def display(self): #Print own data, run the same code for left child, center child, and right child, if they have them
         if self.depth>0:
@@ -54,7 +43,7 @@ class node:
             self.ce.display()
         if self.ri:
             self.ri.display()
-
+#define nodes
 c00=node(0,0)
 c01=node(0,1)
 c02=node(0,2)
@@ -119,7 +108,7 @@ c74=node(7,4)
 c75=node(7,5)
 c76=node(7,6)
 c77=node(7,7)
-
+#connect nodes
 c00.insC(c01)
 c01.insC(c02)
 c02.insC(c03)
@@ -182,6 +171,7 @@ c66.insL(c65)
 c55.insC(c45)
 c45.insR(c46)
 c45.insL(c44)
+#display root
 myNode=c00
 myNode.display()
 print("\"X\" indicates a crossroads, where different paths converge")
