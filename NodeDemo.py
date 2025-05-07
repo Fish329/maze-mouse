@@ -11,15 +11,24 @@ class node:
     def insL(self,wnode):
             self.le=wnode
             wnode.depth=self.depth+1
-            wnode.pos="L"
+            if wnode.pos!=None:
+                wnode.pos="X"
+            else:
+                wnode.pos="L"
     def insR(self,wnode):
             self.ri=wnode
             wnode.depth=self.depth+1
-            wnode.pos="R"
+            if wnode.pos!=None:
+                wnode.pos="X"
+            else:
+                wnode.pos="R"
     def insC(self,wnode):
             self.ce=wnode
             wnode.depth=self.depth+1
-            wnode.pos="C"
+            if wnode.pos!=None:
+                wnode.pos="X"
+            else:
+                wnode.pos="C"
             
     def trav(self,iterations,pos): #Traverse, to marginally shorten the commands
         recurse=self
@@ -156,9 +165,23 @@ c62.insC(c72)
 c62.insL(c63)
 c51.insR(c50)
 c67.insC(c77)
-c72.insL(c73)#
-c72.insR(c71)#
-c63.insC(c64)#
-c50.insL(c60)#
-c77.insL(c76)#
-#WIP
+c72.insL(c73)
+c72.insR(c71)
+c63.insC(c64)
+c50.insL(c60)
+c77.insL(c76)
+c73.insC(c74)
+c71.insC(c70)
+c64.insC(c65)
+c60.insL(c61)
+c76.insR(c66)
+c65.insR(c75)
+c65.insL(c55)
+c61.insC(c62)
+c66.insL(c65)
+c55.insC(c45)
+c45.insR(c46)
+c45.insL(c44)
+myNode=c00
+myNode.display()
+print("\"X\" indicates a crossroads, where different paths converge")
