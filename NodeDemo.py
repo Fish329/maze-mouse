@@ -30,19 +30,22 @@ class node:
             else:
                 wnode.pos="C"
     
-    def display(self): #Print own data, run the same code for left child, center child, and right child, if they have them
+    def display(self,parent): #Print own data, run the same code for left child, center child, and right child, if they have them
         if self.depth>0:
             for i in range(self.depth):
                 print("-",end="")
-            print("(",self.x,",",self.y,") ","(",self.pos,")",sep="")
+            print("(",self.x,",",self.y,") [",parent.x,",",parent.y,"] (",self.pos,")",sep="")
         else:
             print("(",self.x,",",self.y,")",sep="")
         if self.le:
-            self.le.display()
+            self.le.depth=self.depth+1
+            self.le.display(self)
         if self.ce:
-            self.ce.display()
+            self.ce.depth=self.depth+1
+            self.ce.display(self)
         if self.ri:
-            self.ri.display()
+            self.ri.depth=self.depth+1
+            self.ri.display(self)
 #define nodes
 c00=node(0,0)
 c01=node(0,1)
@@ -173,5 +176,6 @@ c45.insR(c46)
 c45.insL(c44)
 #display root
 myNode=c00
-myNode.display()
+myNode.display(None)
 print("\"X\" indicates a crossroads, where different paths converge")
+print("coords in [brackets] indicate the node's parent.")
