@@ -38,13 +38,10 @@ class node:
         else:
             print("(",self.x,",",self.y,")",sep="")
         if self.le:
-            self.le.depth=self.depth+1
             self.le.display(self)
         if self.ce:
-            self.ce.depth=self.depth+1
             self.ce.display(self)
         if self.ri:
-            self.ri.depth=self.depth+1
             self.ri.display(self)
 #define nodes
 c00=node(0,0)
