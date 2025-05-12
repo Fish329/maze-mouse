@@ -176,5 +176,4 @@ c45.insL(c44)
 #display root
 myNode=c00
 myNode.display(None)
-print("\"X\" indicates a crossroads, where different paths converge")
 print("coords in [brackets] indicates the node's parent.")
