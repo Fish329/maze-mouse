@@ -1,5 +1,5 @@
 class node:
-    def __init__(self,x,y,pos=None,le=None,ri=None,ce=None,depth=0):
+    def __init__(self,x,y,pos=None,le=None,ri=None,ce=None,depth=0,special=None):
         self.x=x
         self.y=y
         self.le=le
@@ -7,6 +7,7 @@ class node:
         self.ce=ce
         self.depth=depth
         self.pos=pos
+        self.special=special
     
     def insL(self,wnode): #insert a node at the left position
             self.le=wnode
@@ -34,9 +35,13 @@ class node:
         if self.depth>0:
             for i in range(self.depth):
                 print("-",end="")
-            print("(",self.x,",",self.y,") [",parent.x,",",parent.y,"] (",self.pos,")",sep="")
+            print("(",self.x,",",self.y,") (",self.pos,") ",sep="",end="")
         else:
-            print("(",self.x,",",self.y,")",sep="")
+            print("(",self.x,",",self.y,") ",sep="",end="")
+        if self.special:
+            print(self.special)
+        else:
+            print("")
         if self.le:
             self.le.depth=self.depth+1
             self.le.display(self)
@@ -62,30 +67,30 @@ c13=node(1,3)
 c14=node(1,4)
 c15=node(1,5)
 c16=node(1,6)
-c17=node(1,7)
+c17=node(1,7,special="DEAD END")
 c20=node(2,0)
 c21=node(2,1)
 c22=node(2,2)
 c23=node(2,3)
 c24=node(2,4)
-c25=node(2,5)
+c25=node(2,5,special="DEAD END")
 c26=node(2,6)
 c27=node(2,7)
-c30=node(3,0)
+c30=node(3,0,special="DEAD END")
 c31=node(3,1)
 c32=node(3,2)
 c33=node(3,3)
 c34=node(3,4)
-c35=node(3,5)
+c35=node(3,5,special="DEAD END")
 c36=node(3,6)
 c37=node(3,7)
-c40=node(4,0)
+c40=node(4,0,special="DEAD END")
 c41=node(4,1)
 c42=node(4,2)
 c43=node(4,3)
-c44=node(4,4)
+c44=node(4,4,special="FINISH")
 c45=node(4,5)
-c46=node(4,6)
+c46=node(4,6,special="DEAD END")
 c47=node(4,7)
 c50=node(5,0)
 c51=node(5,1)
@@ -93,22 +98,24 @@ c52=node(5,2)
 c53=node(5,3)
 c54=node(5,4)
 c55=node(5,5)
-c56=node(5,6)
+c56=node(5,6,special="DEAD END")
 c57=node(5,7)
 c60=node(6,0)
 c61=node(6,1)
 c62=node(6,2)
+cc62=node(6,2)
 c63=node(6,3)
 c64=node(6,4)
 c65=node(6,5)
+cc65=node(6,5)
 c66=node(6,6)
 c67=node(6,7)
-c70=node(7,0)
+c70=node(7,0,special="DEAD END")
 c71=node(7,1)
 c72=node(7,2)
 c73=node(7,3)
-c74=node(7,4)
-c75=node(7,5)
+c74=node(7,4,special="DEAD END")
+c75=node(7,5,special="DEAD END")
 c76=node(7,6)
 c77=node(7,7)
 #connect nodes
@@ -169,13 +176,11 @@ c60.insL(c61)
 c76.insR(c66)
 c65.insR(c75)
 c65.insL(c55)
-c61.insC(c62)
-c66.insL(c65)
+c61.insC(cc62)
+c66.insL(cc65)
 c55.insC(c45)
 c45.insR(c46)
 c45.insL(c44)
 #display root
 myNode=c00
 myNode.display(None)
-print("\"X\" indicates a crossroads, where different paths converge")
-print("coords in [brackets] indicate the node's parent.")
