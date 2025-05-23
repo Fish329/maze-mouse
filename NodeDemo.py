@@ -1,5 +1,9 @@
+#define colors
+cRESET="\033[0m"
+cYELLOW="\x1b[33m"
+#defne node
 class node:
-    def __init__(self,x,y,pos=None,le=None,ri=None,ce=None,depth=0,special=None):
+    def __init__(self,x,y,pos=None,le=None,ri=None,ce=None,depth=0,special=None,opt=False):
         self.x=x
         self.y=y
         self.le=le
@@ -8,6 +12,7 @@ class node:
         self.depth=depth
         self.pos=pos
         self.special=special
+        self.opt=opt
     
     def insL(self,wnode): #insert a node at the left position
             self.le=wnode
@@ -32,11 +37,16 @@ class node:
                 wnode.pos="C"
     
     def display(self,parent): #Print own data, run the same code for left child, center child, and right child, if they have them
+        print(cRESET,end="")
         if self.depth>0:
             for i in range(self.depth):
                 print("-",end="")
+                if self.opt==True:
+                    print(cYELLOW,end="")
             print("(",self.x,",",self.y,") (",self.pos,") ",sep="",end="")
         else:
+            if self.opt==True:
+                print(cYELLOW,end="")
             print("(",self.x,",",self.y,") ",sep="",end="")
         if self.special:
             print(self.special)
@@ -52,33 +62,33 @@ class node:
             self.ri.depth=self.depth+1
             self.ri.display(self)
 #define nodes
-c00=node(0,0)
-c01=node(0,1)
-c02=node(0,2)
-c03=node(0,3)
-c04=node(0,4)
+c00=node(0,0,opt=True)
+c01=node(0,1,opt=True)
+c02=node(0,2,opt=True)
+c03=node(0,3,opt=True)
+c04=node(0,4,opt=True)
 c05=node(0,5)
 c06=node(0,6)
 c07=node(0,7)
 c10=node(1,0)
 c11=node(1,1)
 c12=node(1,2)
-c13=node(1,3)
-c14=node(1,4)
+c13=node(1,3,opt=True)
+c14=node(1,4,opt=True)
 c15=node(1,5)
 c16=node(1,6)
 c17=node(1,7,special="DEAD END")
 c20=node(2,0)
 c21=node(2,1)
-c22=node(2,2)
-c23=node(2,3)
+c22=node(2,2,opt=True)
+c23=node(2,3,opt=True)
 c24=node(2,4)
 c25=node(2,5,special="DEAD END")
 c26=node(2,6)
 c27=node(2,7)
 c30=node(3,0,special="DEAD END")
 c31=node(3,1)
-c32=node(3,2)
+c32=node(3,2,opt=True)
 c33=node(3,3)
 c34=node(3,4)
 c35=node(3,5,special="DEAD END")
@@ -86,27 +96,27 @@ c36=node(3,6)
 c37=node(3,7)
 c40=node(4,0,special="DEAD END")
 c41=node(4,1)
-c42=node(4,2)
+c42=node(4,2,opt=True)
 c43=node(4,3)
-c44=node(4,4,special="FINISH")
-c45=node(4,5)
+c44=node(4,4,special="FINISH",opt=True)
+c45=node(4,5,opt=True)
 c46=node(4,6,special="DEAD END")
 c47=node(4,7)
 c50=node(5,0)
 c51=node(5,1)
-c52=node(5,2)
+c52=node(5,2,opt=True)
 c53=node(5,3)
 c54=node(5,4)
-c55=node(5,5)
+c55=node(5,5,opt=True)
 c56=node(5,6,special="DEAD END")
 c57=node(5,7)
 c60=node(6,0)
 c61=node(6,1)
-c62=node(6,2)
+c62=node(6,2,opt=True)
 cc62=node(6,2)
-c63=node(6,3)
-c64=node(6,4)
-c65=node(6,5)
+c63=node(6,3,opt=True)
+c64=node(6,4,opt=True)
+c65=node(6,5,opt=True)
 cc65=node(6,5)
 c66=node(6,6)
 c67=node(6,7)
