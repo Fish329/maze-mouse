@@ -41,8 +41,8 @@ class node:
         if self.depth>0:
             for i in range(self.depth):
                 print("-",end="")
-                if self.opt==True:
-                    print(cYELLOW,end="")
+            if self.opt==True:
+                print(cYELLOW,end="")
             print("(",self.x,",",self.y,") (",self.pos,") ",sep="",end="")
         else:
             if self.opt==True:
