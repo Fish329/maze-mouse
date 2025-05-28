@@ -62,7 +62,7 @@ def twoByTwo():
     c00=node(0,0,"START")
     c01=node(0,1)
     c10=node(1,0)
-    c11=node(1,1,"END")
+    c11=node(1,1,"FINISH")
     #define starting connections
     seed=random.randrange(0,2)
     if seed==0:
