@@ -1,3 +1,4 @@
+#this is wip
 import random
 #define nodes
 class node:
@@ -65,3 +66,4 @@ root.insC(final)
 root.insR(final)
 print("S:",end="")
 root.display()
+#this is wip
