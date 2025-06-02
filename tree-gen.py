@@ -1,4 +1,3 @@
-#This program is not guaranteed to generate a tree of depth 4, but it can.
 import random
 #define nodes
 class node:
@@ -10,25 +9,36 @@ class node:
         self.center=center
     #define functions
     def insL(self): 
-        if random.randrange(0,2): #flip a coin, if heads, add node to left
-            self.left=node(random.randrange(0,100),depth=self.depth+1)
-            if random.randrange(0,2): #flip a coin again and go through these trials for child
+        self.left=node(random.randrange(0,100),depth=self.depth+1)
+        if self.depth<3:
+            rng=random.randrange(0,3)
+            if rng==0:
                 self.left.insL()
-                self.left.insC()
+            elif rng==1:
+                   self.left.insC()
+            elif rng==2:
                 self.left.insR()
+                    
     def insC(self):
-        if random.randrange(0,2):
-            self.center=node(random.randrange(0,100),depth=self.depth+1)
-            if random.randrange(0,2):
+        self.center=node(random.randrange(0,100),depth=self.depth+1)
+        if self.depth<3:
+            rng=random.randrange(0,3)
+            if rng==0:
                 self.center.insL()
+            elif rng==1:
                 self.center.insC()
+            elif rng==2:
                 self.center.insR()
+            
     def insR(self):
-        if random.randrange(0,2):
-            self.right=node(random.randrange(0,100),depth=self.depth+1)
-            if random.randrange(0,2):
-                self.right.insL()
+        self.right=node(random.randrange(0,100),depth=self.depth+1)
+        if self.depth<3:
+            rng=random.randrange(0,3)
+            if rng==0:
+               self.right.insL()
+            elif rng==1:
                 self.right.insC()
+            elif rng==2:
                 self.right.insR()
     def display(self):
         for i in range(self.depth):
@@ -50,4 +60,3 @@ root.insC()
 root.insR()
 print("S:",end="")
 root.display()
-#This program is not guaranteed to generate a tree of depth 4, but it can.
