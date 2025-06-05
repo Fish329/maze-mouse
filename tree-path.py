@@ -2,48 +2,57 @@
 import random
 #define nodes
 class node:
-    def __init__(self,data,depth=0,left=None,center=None,right=None,parent=None):
+    def __init__(self,data,depth=0,children=0,left=None,center=None,right=None,parent=None):
         self.data=data
         self.depth=depth
         self.left=left
         self.right=right
         self.center=center
-        parent=parent
+        self.parent=parent
+        self.children=children
     #define functions
-    def insL(self,final): 
-        self.left=node(random.randrange(0,100),depth=self.depth+1,parent=self)
-        if self.depth<1:
-            rng=random.randrange(0,3)
-            if rng==0:
-                self.left.insL(final)
-            elif rng==1:
-                   self.left.insC(final)
-            elif rng==2:
-                self.left.insR(final)
-        elif final==0:
-            print("this is valid syntax")
-                    
-    def insC(self,final):
-        self.center=node(random.randrange(0,100),depth=self.depth+1,parent=self)
-        if self.depth<2:
-            rng=random.randrange(0,3)
-            if rng==0:
-                self.center.insL(final)
-            elif rng==1:
-                self.center.insC(final)
-            elif rng==2:
-                self.center.insR(final)
+    def spawn(self):
+        pool=[0,1,2]
+        for i in range(2):
+            pick=random.choice(pool)
+            if i>0:
+                if random.randrange(0,2)==0:
+                    pool.remove(pick)
+                    continue
+            if pick==0:
+                self.insL()
+            elif pick==1:
+                self.insC()
+            elif pick==2:
+                self.insR()
+            pool.remove(pick)
             
-    def insR(self,final):
-        self.right=node(random.randrange(0,100),depth=self.depth+1,parent=self)
+    def insL(self): 
+        self.left=node(random.randrange(0,100),depth=self.depth+1,parent=self)
+        self.children+=1
         if self.depth<2:
-            rng=random.randrange(0,3)
-            if rng==0:
-               self.right.insL(final)
-            elif rng==1:
-                self.right.insC(final)
-            elif rng==2:
-                self.right.insR(final)
+            if self.children>1:
+                if random.randrange(0,2)==0:
+                    return
+            self.left.spawn()
+
+    def insC(self):
+        self.center=node(random.randrange(0,100),depth=self.depth+1,parent=self)
+        self.children+=1
+        if self.depth<2:
+            if self.children>1:
+                if random.randrange(0,2)==0:
+                    return
+            self.center.spawn()
+            
+    def insR(self):
+        self.right=node(random.randrange(0,100),depth=self.depth+1,parent=self)
+        self.children+=1
+        if self.depth<2:
+            if self.children>1:
+                if random.randrange(0,2)==0:
+                    return
+            self.right.spawn()
 
     def display(self):
         for i in range(self.depth):
@@ -60,10 +69,7 @@ class node:
             self.right.display()
         
 root=node(random.randrange(0,100))
-final=0
-root.insL(final)
-root.insC(final)
-root.insR(final)
+root.spawn()
 print("S:",end="")
 root.display()
 #this is wip
